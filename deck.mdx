@@ -1,0 +1,710 @@
+import { Head, Notes } from "mdx-deck";
+import {
+  Invert,
+  Split,
+  SplitRight,
+  Horizontal,
+  FullScreenCode
+} from "@mdx-deck/layouts";
+import { Image, Appear } from "@mdx-deck/components";
+import IFrame, {
+  Glitch,
+  CodeSandbox
+} from "./components/IFrame";
+import CodeBlock from "./components/CodeBlock";
+import { CodeSurferLayout } from "code-surfer";
+import styled from "@emotion/styled";
+import future from "@mdx-deck/themes/future";
+import { syntaxHighlighterPrism } from "@mdx-deck/themes";
+import theme from "./theme";
+import "./deck.css";
+
+export const themes = [future, syntaxHighlighterPrism];
+
+<!-- TODO: Add path to an image for twitter:card and og -->
+
+<Head>
+  <title>Intro to React: Hooks Edition</title>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@elijahmanor" />
+  <meta
+    name="twitter:title"
+    content="Intro to React: Hooks Edition"
+  />
+  <meta
+    name="twitter:description"
+    content="A slide deck introducing React and Hooks"
+  />
+  <meta
+    name="twitter:image"
+    content="https://example.com/card.png"
+  />
+  <meta
+    property="og:url"
+    content="https://elijahmanor.com/react-intro-hooks"
+  />
+  <meta
+    property="og:title"
+    content="Intro to React: Hooks Edition"
+  />
+  <meta
+    property="og:description"
+    content="A slide deck introducing React and Hooks"
+  />
+  <meta
+    property="og:image"
+    content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
+  />
+</Head>
+
+<Image
+  src={require("file-loader!./images/suad-kamardeen-786325-unsplash.jpg")}
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    color: "white",
+    backgroundColor: "white",
+    animation: "filters 60s ease-in-out 5s infinite"
+  }}
+/>
+
+<div
+  style={{
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "75vw"
+  }}
+>
+  <h1
+    style={{
+      color: "black",
+      webkitTextStrokeWidth: "3px",
+      webkitTextStrokeColor: "white",
+      fontSize: "8rem",
+      margin: "1rem 0 1rem 0"
+    }}
+  >
+    Intro to React
+  </h1>
+  <h2
+    style={{
+      color: "black",
+      webkitTextStrokeWidth: "3px",
+      webkitTextStrokeColor: "white",
+      fontSize: "5rem",
+      margin: "1rem 0 1rem 0"
+    }}
+  >
+    Hooks Edition
+  </h2>
+  <a
+    href="https://twitter.com/elijahmanor"
+    style={{
+      fontFamily: "monospace",
+      fontSize: "6rem",
+      color: "black",
+      textDecoration: "none",
+      webkitTextStrokeWidth: "2px",
+      webkitTextStrokeColor: "white"
+    }}
+  >
+    @elijahmanor
+  </a>
+</div>
+
+<Notes>
+  <ul>
+    <li>
+      Left Arrow - Go to previous slide (or step in Appear)
+    </li>
+    <li>
+      Right Arrow - Go to next slide (or step in Appear)
+    </li>
+    <li>Space - Go to next slide (or step in Appear)</li>
+    <li>Option + P - Toggle Presenter Mode</li>
+    <li>Option + O - Toggle Overview Mode</li>
+  </ul>
+</Notes>
+
+---
+
+# What is React?
+
+---
+
+# Why React?
+
+---
+
+# Getting Started
+
+---
+
+# React Sans Build
+
+---
+
+# What are Hooks?
+
+---
+
+# Rules of Hooks
+
+---
+
+<CodeSandbox id="mymjpv3l48" />
+
+<Notes>Lightsaber: Custom useState</Notes>
+
+---
+
+<Glitch
+  id="funky-gum"
+  backupId="luminous-daisy"
+  view="editor"
+  initialPath="index.html"
+/>
+
+<Notes>React Sans Build</Notes>
+
+---
+
+<CodeSandbox id="tic-tac-toe-usestate-cnp6q" />
+
+<Notes>Tic-Tac-Toe useState</Notes>
+
+---
+
+<CodeSandbox id="tic-tac-toe-usereducer-memo-6dps4" />
+
+<Notes>Tic-Tac-Toe useReduder</Notes>
+
+---
+
+<CodeSandbox id="742892kwp6" />
+
+<Notes>class to hooks side-by-side</Notes>
+
+---
+
+<IFrame
+  src="https://nikgraf.github.io/react-hooks/"
+  style={{ backgroundColor: "white" }}
+/>
+
+<Notes>Community Hooks</Notes>
+
+---
+
+<CodeSandbox id="n95ljrng2" />
+
+<Notes>Meme Generator</Notes>
+
+---
+
+# Hello
+
+---
+
+| Feature          | Class | Func | Hooks |
+| ---------------- | :---: | :--: | :---: |
+| Props            |   -   |  -   |   -   |
+| State            |   -   |  -   |   -   |
+| Lifecycle Events |   -   |  -   |   -   |
+| Side-Effects     |   -   |  -   |   -   |
+| Pure Component   |   -   |  -   |   -   |
+| Error Boundaries |   -   |  -   |   -   |
+
+---
+
+## Class Components
+
+---
+
+## Class Component: Props
+
+```jsx
+class Counter extends React.Component {
+  render() {
+    return (
+      <button onClick={this.props.onClick}>
+        {this.props.count}
+      </button>
+    );
+  }
+}
+```
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            | **Yes** |  -   |   -   |
+| State            |    -    |  -   |   -   |
+| Lifecycle Events |    -    |  -   |   -   |
+| Side-Effects     |    -    |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+## Class Component: State
+
+```jsx
+class Counter extends React.Component {
+  state = { count: 0 };
+  handleClick = () => {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+<!-- https://codesandbox.io/s/peaceful-water-x2rp4 -->
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            | **Yes** |  -   |   -   |
+| Lifecycle Events |    -    |  -   |   -   |
+| Side-Effects     |    -    |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+## Classes: Lifecycle & Effects
+
+```jsx
+class Counter extends React.Component {
+  /* ... */
+  componentDidMount() {
+    window.addEventListener("keypress", this.handleClear);
+  }
+  componentWillUnmount() {
+    window.removeEventListener(
+      "keypress",
+      this.handleClear
+    );
+  }
+  /* ... */
+}
+```
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events | **Yes** |  -   |   -   |
+| Side-Effects     | **Yes** |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+## Classes: Pure Component
+
+```jsx
+class Counter extends React.PureComponent {
+  /* ... */
+}
+```
+
+---
+
+## Classes: Pure Component
+
+```jsx
+class Counter extends React.Component {
+  /* ... */
+  shouldComponentUpdate(nextProps, nextState) {
+    if ( /* props or state have changed */ ) {
+      return true;
+    }
+    return false;
+  }
+  /* ... */
+}
+```
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events |   Yes   |  -   |   -   |
+| Side-Effects     |   Yes   |  -   |   -   |
+| Pure Component   | **Yes** |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+## Classes: Error Boundaries
+
+```jsx
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Ka-pow!</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events |   Yes   |  -   |   -   |
+| Side-Effects     |   Yes   |  -   |   -   |
+| Pure Component   |   Yes   |  -   |   -   |
+| Error Boundaries | **Yes** |  -   |   -   |
+
+---
+
+| Feature          | Class | Func | Hooks |
+| ---------------- | :---: | :--: | :---: |
+| Props            |  Yes  |  -   |   -   |
+| State            |  Yes  |  -   |   -   |
+| Lifecycle Events |  Yes  |  -   |   -   |
+| Side-Effects     |  Yes  |  -   |   -   |
+| Pure Component   |  Yes  |  -   |   -   |
+| Error Boundaries |  Yes  |  -   |   -   |
+
+---
+
+## Function Components
+
+---
+
+## Functions: Props
+
+```jsx
+function Counter({ count, onClick }) {
+  return <button onClick={onClick}>{count}</button>;
+}
+```
+
+---
+
+| Feature          | Class |  Func   | Hooks |
+| ---------------- | :---: | :-----: | :---: |
+| Props            |  Yes  | **Yes** |   -   |
+| State            |  Yes  |    -    |   -   |
+| Lifecycle Events |  Yes  |    -    |   -   |
+| Side-Effects     |  Yes  |    -    |   -   |
+| Pure Component   |  Yes  |    -    |   -   |
+| Error Boundaries |  Yes  |    -    |   -   |
+
+---
+
+| Feature          | Class |  Func  | Hooks |
+| ---------------- | :---: | :----: | :---: |
+| Props            |  Yes  |  Yes   |   -   |
+| State            |  Yes  | **No** |   -   |
+| Lifecycle Events |  Yes  | **No** |   -   |
+| Side-Effects     |  Yes  | **No** |   -   |
+| Pure Component   |  Yes  | **No** |   -   |
+| Error Boundaries |  Yes  | **No** |   -   |
+
+---
+
+## Function Components with Hooks
+
+> Hooks let you use state and other React features in a function component without using a class
+
+---
+
+| Feature          | Class | Func |  Hooks   |
+| ---------------- | :---: | :--: | :------: |
+| Props            |  Yes  | Yes  | **Yes**  |
+| State            |  Yes  |  No  | **Yes**  |
+| Lifecycle Events |  Yes  |  No  | **Some** |
+| Side-Effects     |  Yes  |  No  | **Yes**  |
+| Pure Component   |  Yes  |  No  | **Yes**  |
+| Error Boundaries |  Yes  |  No  |  **No**  |
+
+---
+
+## Show Me Some Code Already
+
+---
+
+<Invert>
+
+## Invert Layout
+
+</Invert>
+
+---
+
+<Split>
+
+![](https://source.unsplash.com/random/768x2048?brooklyn)
+
+## Split Layout
+
+</Split>
+
+---
+
+<SplitRight>
+
+![](https://source.unsplash.com/random/768x2048?brooklyn)
+
+## SplitRight Layout
+
+</SplitRight>
+
+---
+
+<Horizontal>
+
+## Horizontal Layout
+
+![](https://source.unsplash.com/random/768x2048?brooklyn)
+
+![](https://source.unsplash.com/random/768x2048?brooklyn)
+
+</Horizontal>
+
+---
+
+<FullScreenCode>
+
+```jsx
+<Button>FullScreenCode Layout</Button>
+```
+
+</FullScreenCode>
+
+---
+
+<CodeSurferLayout>
+
+```js
+module.exports = {
+  entry: "./path/to/my/entry/file.js"
+};
+```
+
+```js 4,7 subtitle="Entry and Output"
+const path = require("path");
+
+module.exports = {
+  entry: "./path/to/my/entry/file.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "my-first-webpack.bundle.js"
+  }
+};
+```
+
+```js 5,7:9
+const path = require("path");
+
+module.exports = {
+  output: {
+    filename: "my-first-webpack.bundle.js"
+  },
+  module: {
+    rules: [{ test: /\.txt$/, use: "raw-loader" }]
+  }
+};
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```js
+import React, { Component, Fragment } from "react";
+import KeyCodeBlock from "./KeyCodeBlock";
+
+export default class KeyCode extends Component {
+  constructor() {
+    super();
+    this.state = { key: "", keyCode: "", code: "" };
+    this.handleKey = this.handleKey.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKey);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKey);
+  }
+  handleKey(e) {
+    this.setState({
+      keyCode: e.which,
+      key: e.key,
+      code: e.code
+    });
+  }
+  render() {
+    const { keyCode, key, code } = this.state;
+    return (
+      <main className="KeyCode">
+        {keyCode ? (
+          <Fragment>
+            <KeyCodeBlock header="keyCode" code={keyCode} />
+            <KeyCodeBlock header="key" code={key} />
+            <KeyCodeBlock header="code" code={code} />
+          </Fragment>
+        ) : (
+          <h1>Press Any Key</h1>
+        )}
+      </main>
+    );
+  }
+}
+```
+
+```js
+import React, { Component, Fragment } from "react";
+import KeyCodeBlock from "./KeyCodeBlock";
+
+export default class KeyCode extends Component {
+  state = { key: "", keyCode: "", code: "" };
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKey);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKey);
+  }
+  handleKey = e => {
+    this.setState({
+      keyCode: e.which,
+      key: e.key,
+      code: e.code
+    });
+  };
+  render() {
+    const { keyCode, key, code } = this.state;
+    return (
+      <main className="KeyCode">
+        {keyCode ? (
+          <Fragment>
+            <KeyCodeBlock header="keyCode" code={keyCode} />
+            <KeyCodeBlock header="key" code={key} />
+            <KeyCodeBlock header="code" code={code} />
+          </Fragment>
+        ) : (
+          <h1>Press Any Key</h1>
+        )}
+      </main>
+    );
+  }
+}
+```
+
+```js
+import React, {
+  Fragment,
+  useState,
+  useEffect
+} from "react";
+import KeyCodeBlock from "./KeyCodeBlock";
+
+export default function KeyCode() {
+  const [{ keyCode, key, code }, setCodes] = useState({});
+
+  useEffect(() => {
+    const handleKey = ({ keyCode, key, code }) =>
+      setCodes({ keyCode, key, code });
+    document.addEventListener("keydown", handleKey);
+    return () =>
+      document.removeEventListener("keydown", handleKey);
+  }, []);
+
+  return (
+    <main className="KeyCode">
+      {keyCode ? (
+        <Fragment>
+          <KeyCodeBlock header="keyCode" code={keyCode} />
+          <KeyCodeBlock header="key" code={key} />
+          <KeyCodeBlock header="code" code={code} />
+        </Fragment>
+      ) : (
+        <h1>Press Any Key</h1>
+      )}
+    </main>
+  );
+}
+```
+
+```js
+import React, {
+  Fragment,
+  useState,
+  useEffect
+} from "react";
+import KeyCodeBlock from "./KeyCodeBlock";
+
+const useDocumentKeyCode = () => {
+  const [codes, setCodes] = useState({});
+  useEffect(() => {
+    const handleKey = ({ keyCode, key, code }) =>
+      setCodes({ keyCode, key, code });
+    document.addEventListener("keydown", handleKey);
+    return () =>
+      document.removeEventListener("keydown", handleKey);
+  }, []);
+  return codes;
+};
+
+export default function KeyCode() {
+  const { keyCode, key, code } = useDocumentKeyCode();
+  return (
+    <main className="KeyCode">
+      {keyCode ? (
+        <Fragment>
+          <KeyCodeBlock header="keyCode" code={keyCode} />
+          <KeyCodeBlock header="key" code={key} />
+          <KeyCodeBlock header="code" code={code} />
+        </Fragment>
+      ) : (
+        <h1>Press Any Key</h1>
+      )}
+    </main>
+  );
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+export { comic as theme } from "@mdx-deck/themes";
+
+# Resources
+
+- [Fake useState](https://codesandbox.io/s/mymjpv3l48)
+- [Custom Hook (useTheForce)]()
+- [StarWars Glyphicons](http://starwarsglyphicons.com/cheatsheet.phtml)
+- [Photo](https://unsplash.com/photos/KBE_Bvq1U30) by [Suad Kamardeen](https://unsplash.com/@skmuse_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
