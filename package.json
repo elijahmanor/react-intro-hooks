@@ -8,7 +8,12 @@
     "help": "mdx-deck",
     "gh-pages": "git subtree push --prefix dist origin gh-pages",
     "gh-pages:force": "git push origin `git subtree split --prefix dist master`:gh-pages --force",
-    "gh-pages:refresh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
+    "gh-pages:refresh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
+    "deploy": "npm run build && cd dist && npx now",
+    "alias": "npx now alias https://dist-tcuzlrgcyt.now.sh react-intro-hooks"
+  },
+  "now": {
+    "alias": "react-intro-hooks"
   },
   "devDependencies": {
     "file-loader": "^4.0.0",
