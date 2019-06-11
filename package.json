@@ -5,7 +5,10 @@
   "scripts": {
     "start": "mdx-deck -p 1337 deck.mdx",
     "build": "mdx-deck build deck.mdx",
-    "help": "mdx-deck"
+    "help": "mdx-deck",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages",
+    "gh-pages:force": "git push origin `git subtree split --prefix dist master`:gh-pages --force",
+    "gh-pages:refresh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
   },
   "devDependencies": {
     "file-loader": "^4.0.0",
