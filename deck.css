@@ -53,3 +53,9 @@ pre.language-jsx .token {
 .cs-title {
   background-color: black !important;
 }
+
+pre.Profile,
+pre.Profile code {
+  font-size: 1rem !important;
+  line-height: 1rem !important;
+}

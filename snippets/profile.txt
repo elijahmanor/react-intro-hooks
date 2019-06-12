@@ -1,0 +1,18 @@
+   ╭──────────────────────────────────────────────────╮
+   │                                                  │
+   │         ╔═╗┬  ┬ ┬┌─┐┬ ┬  ╔╦╗┌─┐┌┐┌┌─┐┬─┐         │
+   │         ║╣ │  │ │├─┤├─┤  ║║║├─┤││││ │├┬┘         │
+   │         ╚═╝┴─┘┴└┘┴ ┴┴ ┴  ╩ ╩┴ ┴┘└┘└─┘┴└─         │
+   │                                                  │
+   │   ∙ Christian and Family Man                     │
+   │   ∙ Senior Front-End Dev at @planview @leankit   │
+   │   ∙ Makes videos at @eggheadio @pluralsight      │
+   │                                                  │
+   │     https://twitter.com/elijahmanor              │
+   │                 https://elijahmanor.com          │
+   │      https://github.com/elijahmanor              │
+   │    https://linkedin.com/elijahmanor              │
+   │                         elijahmanor@gmail.com    │
+   │                   $ npx elijahmanor              │
+   │                                                  │
+   ╰──────────────────────────────────────────────────╯
