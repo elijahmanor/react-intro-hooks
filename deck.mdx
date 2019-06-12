@@ -14,6 +14,7 @@ import IFrame, {
 import CodeBlock from "./components/CodeBlock";
 import { CodeSurferLayout } from "code-surfer";
 import SideBySide from "./components/SideBySide";
+import Jokes from "./components/Jokes";
 import styled from "@emotion/styled";
 import future from "@mdx-deck/themes/future";
 import { syntaxHighlighterPrism } from "@mdx-deck/themes";
@@ -22,11 +23,8 @@ import "./deck.css";
 
 export const themes = [future, syntaxHighlighterPrism];
 
-<!-- TODO: Add path to an image for twitter:card and og -->
-
 <Head>
   <title>Intro to React: Hooks Edition</title>
-  {/* <meta name="twitter:card" content="summary_large_image" /> */}
   <meta name="twitter:site" content="@elijahmanor" />
   <meta
     name="twitter:title"
@@ -36,10 +34,6 @@ export const themes = [future, syntaxHighlighterPrism];
     name="twitter:description"
     content="A slide deck introducing React and Hooks"
   />
-  {/* <meta
-    name="twitter:image"
-    content="https://example.com/card.png"
-  /> */}
   <meta
     property="og:url"
     content="https://elijahmanor.com/react-intro-hooks"
@@ -52,10 +46,6 @@ export const themes = [future, syntaxHighlighterPrism];
     property="og:description"
     content="A slide deck introducing React and Hooks"
   />
-  {/* <meta
-    property="og:image"
-    content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
-  /> */}
 </Head>
 
 <Image
@@ -70,7 +60,6 @@ export const themes = [future, syntaxHighlighterPrism];
     animation: "filters 60s ease-in-out 5s infinite"
   }}
 />
-
 <div
   style={{
     position: "fixed",
@@ -116,6 +105,21 @@ export const themes = [future, syntaxHighlighterPrism];
     @elijahmanor
   </a>
 </div>
+
+<Jokes
+  style={{
+    position: "absolute",
+    top: "0",
+    left: "0",
+    right: "0",
+    height: "5rem",
+    fontFamily: "monospace",
+    backgroundColor: "black",
+    fontSize: "1.5rem",
+    padding: "0.5rem 2rem",
+    color: "white"
+  }}
+/>
 
 <Notes>
   <ul>
@@ -1055,6 +1059,15 @@ function Counter() {
 ```
 
 </CodeSurferLayout>
+
+---
+
+<img
+  style={{ height: "75vh" }}
+  src={require("file-loader!./images/hook-flow.png")}
+/>
+
+Source: [donavon/hook-flow](https://github.com/donavon/hook-flow)
 
 ---
 
