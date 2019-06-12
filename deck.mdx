@@ -26,7 +26,7 @@ export const themes = [future, syntaxHighlighterPrism];
 
 <Head>
   <title>Intro to React: Hooks Edition</title>
-  <meta name="twitter:card" content="summary_large_image" />
+  {/* <meta name="twitter:card" content="summary_large_image" /> */}
   <meta name="twitter:site" content="@elijahmanor" />
   <meta
     name="twitter:title"
@@ -36,10 +36,10 @@ export const themes = [future, syntaxHighlighterPrism];
     name="twitter:description"
     content="A slide deck introducing React and Hooks"
   />
-  <meta
+  {/* <meta
     name="twitter:image"
     content="https://example.com/card.png"
-  />
+  /> */}
   <meta
     property="og:url"
     content="https://elijahmanor.com/react-intro-hooks"
@@ -52,10 +52,10 @@ export const themes = [future, syntaxHighlighterPrism];
     property="og:description"
     content="A slide deck introducing React and Hooks"
   />
-  <meta
+  {/* <meta
     property="og:image"
     content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
-  />
+  /> */}
 </Head>
 
 <Image
@@ -291,7 +291,7 @@ ReactDOM.render(<Ball />, document.getElementById("app"));
 
 <CodeSurferLayout>
 
-```js title="Components"
+```jsx title="Components"
 function Component1() {
   return <h1>Hello, World!</h1>;
 }
@@ -309,7 +309,7 @@ class Component4 extends React.Component {
 }
 ```
 
-```js 1:3 subtitle="ES5 Function Component"
+```jsx 1:3 subtitle="ES5 Function Component"
 function Component1() {
   return <h1>Hello, World!</h1>;
 }
@@ -327,7 +327,7 @@ class Component4 extends React.Component {
 }
 ```
 
-```js 5:7 subtitle="ES6 Fat-Arrow Function Component"
+```jsx 5:7 subtitle="ES6 Fat-Arrow Function Component"
 function Component1() {
   return <h1>Hello, World!</h1>;
 }
@@ -345,7 +345,7 @@ class Component4 extends React.Component {
 }
 ```
 
-```js 9 subtitle="ES6 Fat-Arrow Function Component with implicit return"
+```jsx 9 subtitle="ES6 Fat-Arrow Function Component with implicit return"
 function Component1() {
   return <h1>Hello, World!</h1>;
 }
@@ -363,7 +363,7 @@ class Component4 extends React.Component {
 }
 ```
 
-```js 11:15 subtitle="ES6 Class Component"
+```jsx 11:15 subtitle="ES6 Class Component"
 function Component1() {
   return <h1>Hello, World!</h1>;
 }
@@ -387,7 +387,7 @@ class Component4 extends React.Component {
 
 <CodeSurferLayout>
 
-```js title="JSX Props"
+```jsx title="JSX Props"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -402,7 +402,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```js 2 subtitle="Use curly-braces to drop into JavaScript expression"
+```jsx 2 subtitle="Use curly-braces to drop into JavaScript expression"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -417,7 +417,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```js 5:8 subtitle="You can also assign other JSX to a variable to inject"
+```jsx 5:8 subtitle="You can also assign other JSX to a variable to inject"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -432,7 +432,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```js 10:12 subtitle="Or you an destructure the value as it comes inside the component"
+```jsx 10:12 subtitle="Or you an destructure the value as it comes inside the component"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -453,7 +453,7 @@ function MyComponent3({ name }) {
 
 <CodeSurferLayout>
 
-```js title="Conditional JSX"
+```jsx title="Conditional JSX"
 function MyComponent(props) {
   return (
     <h1>
@@ -469,7 +469,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 4:10 subtitle="You can show one JSX or another based on a truthy expression"
+```jsx 4:10 subtitle="You can show one JSX or another based on a truthy expression"
 function MyComponent(props) {
   return (
     <h1>
@@ -485,7 +485,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 4:10 subtitle="You can hide or show content based on a truthy expression"
+```jsx 4:10 subtitle="You can hide or show content based on a truthy expression"
 function MyComponent(props) {
   return (
     <h1>
@@ -499,7 +499,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 4:7 subtitle="You can use the && operator to also hide/show if the expression is boolean"
+```jsx 4:7 subtitle="You can use the && operator to also hide/show if the expression is boolean"
 function MyComponent(props) {
   return (
     <h1>
@@ -518,7 +518,7 @@ function MyComponent(props) {
 
 <CodeSurferLayout>
 
-```js title="JSX Spread Operator"
+```jsx title="JSX Spread Operator"
 function MyComponent(props) {
   return (
     <SubComponent
@@ -530,7 +530,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 1,4:6 subtitle="You could manually add props with matching names"
+```jsx 1,4:6 subtitle="You could manually add props with matching names"
 function MyComponent(props) {
   return (
     <SubComponent
@@ -542,13 +542,13 @@ function MyComponent(props) {
 }
 ```
 
-```js 1:2 subtitle="Or you could spread the properties from the object"
+```jsx 1:2 subtitle="Or you could spread the properties from the object"
 function MyComponent(props) {
   return <SubComponent {...props} />;
 }
 ```
 
-```js 4:5 subtitle="Spreading is like Object.assign in that it merges from right to left"
+```jsx 4:5 subtitle="Spreading is like Object.assign in that it merges from right to left"
 function MyComponent(props) {
   return (
     <SubComponent
@@ -559,14 +559,14 @@ function MyComponent(props) {
 }
 ```
 
-```js 1:4 subtitle="Sometimes you don't want to spread everything"
+```jsx 1:4 subtitle="Sometimes you don't want to spread everything"
 function MyComponent(props) {
   const { checked, ...everythingElse } = props;
   return <SubComponent {...everythingElse} />;
 }
 ```
 
-```js 2:6 subtitle="Another technique is using lodash's omit"
+```jsx 2:6 subtitle="Another technique is using lodash's omit"
 function MyComponent(props) {
   const everyThingElse = _.omit(props, [
     "checked",
@@ -582,7 +582,7 @@ function MyComponent(props) {
 
 <CodeSurferLayout>
 
-```js title="Gotchas"
+```jsx title="Gotchas"
 function MyComponent(props) {
   return (
     <h1
@@ -594,7 +594,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 4 subtitle="Style prop takes an object, not a string"
+```jsx 4 subtitle="Style prop takes an object, not a string"
 function MyComponent(props) {
   return (
     <h1
@@ -606,7 +606,7 @@ function MyComponent(props) {
 }
 ```
 
-```js 2,6 subtitle="There's an implicit children prop"
+```jsx 2,6 subtitle="There's an implicit children prop"
 function MyComponent(props) {
   return <div>{props.children}</div>;
 }
@@ -885,7 +885,7 @@ Instead to gradually start using hooks as you create new Components in your appl
 
 <CodeSurferLayout>
 
-```js title="React.useState function"
+```jsx title="React.useState function"
 import React, { useState } = "react";
 
 function Counter() {
@@ -893,7 +893,7 @@ function Counter() {
 }
 ```
 
-```js 4 subtitle="Call React.useState and provide a default value"
+```jsx 4 subtitle="Call React.useState and provide a default value"
 import React, { useState } = "react";
 
 function Counter() {
@@ -901,7 +901,7 @@ function Counter() {
 }
 ```
 
-```js 6,7 subtitle="Returned array has value & update function"
+```jsx 6,7 subtitle="Returned array has value & update function"
 import React, { useState } = "react";
 
 function Counter() {
@@ -912,7 +912,7 @@ function Counter() {
 }
 ```
 
-```js 4 subtitle="You can use array destructuring instead"
+```jsx 4 subtitle="You can use array destructuring instead"
 import React, { useState } = "react";
 
 function Counter() {
@@ -966,7 +966,7 @@ then it's already configured
 
 <CodeSurferLayout>
 
-```js title="React.useEffect function"
+```jsx title="React.useEffect function"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -975,7 +975,7 @@ function Counter() {
 }
 ```
 
-```js 4 subtitle="Call the React.useEffect function"
+```jsx 4 subtitle="Call the React.useEffect function"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -984,7 +984,7 @@ function Counter() {
 }
 ```
 
-```js 5:10 subtitle="Use React.useEffect and provide a callback"
+```jsx 5:10 subtitle="Use React.useEffect and provide a callback"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -1000,7 +1000,7 @@ function Counter() {
 }
 ```
 
-```js 11:12 subtitle="Return an optional clean-up function"
+```jsx 11:12 subtitle="Return an optional clean-up function"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -1018,7 +1018,7 @@ function Counter() {
 }
 ```
 
-```js 5:12 subtitle="By default callback & clean-up executed before each effect"
+```jsx 5:12 subtitle="By default callback & clean-up executed before each effect"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -1036,7 +1036,7 @@ function Counter() {
 }
 ```
 
-```js 13 subtitle="Can optionally provide 2nd argument to adjust frequency"
+```jsx 13 subtitle="Can optionally provide 2nd argument to adjust frequency"
 import React, { useEffect } from "react";
 
 function Counter() {
@@ -1177,7 +1177,7 @@ function Counter() {
 
 <CodeSurferLayout>
 
-```js title="React.useReducer function"
+```jsx title="React.useReducer function"
 const initialState = { count: 0 };
 
 function reducer(state, action) {
@@ -1203,7 +1203,7 @@ function Counter() {
 }
 ```
 
-```js 8:11 subtitle="Call the React.useEffect passing a reducer function and initialState"
+```jsx 8:11 subtitle="Call the React.useEffect passing a reducer function and initialState"
 const initialState = { count: 0 };
 
 function reducer(state, action) {
@@ -1229,7 +1229,7 @@ function Counter() {
 }
 ```
 
-```js 1 subtitle="Initial state is an object with default values"
+```jsx 1 subtitle="Initial state is an object with default values"
 const initialState = { count: 0 };
 
 function reducer(state, action) {
@@ -1255,7 +1255,7 @@ function Counter() {
 }
 ```
 
-```js 4:11 subtitle="Reducer accepts existing state and incoming action"
+```jsx 4:11 subtitle="Reducer accepts existing state and incoming action"
 const initialState = { count: 0 };
 
 function reducer(state, action) {
@@ -1288,7 +1288,7 @@ function Counter() {
 }
 ```
 
-```js 4:6,22 subtitle="dispatch triggers reducer to get engaged"
+```jsx 4:6,22 subtitle="dispatch triggers reducer to get engaged"
 const initialState = { count: 0 };
 
 function reducer(state, action) {
