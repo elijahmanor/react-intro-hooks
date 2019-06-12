@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDeck } from "@mdx-deck/components";
 import { useHotkeys } from "react-hotkeys-hook";
+import useClipboard from "react-hook-clipboard";
 
 const Frame = styled.iframe`
   width: 100vw;
@@ -20,16 +21,23 @@ export function CodeSandbox({
   hideNavigation = false,
   expandDevTools = false,
   view = "preview", // "preview", "editor", ""
-  initialPath = ""
+  module = "",
+  initialPath = "",
+  code = ""
 }) {
   const state = useDeck();
   const [useBackup, setUseBackup] = useState(false);
-  const src = `https://codesandbox.io/embed/${
-    useBackup && backupId ? backupId : id
-  }?view=${view}&fontsize=${fontSize}&hidenavigation=${
-    hideNavigation ? 1 : 0
-  }&expanddevtools=${expandDevTools ? 1 : 0}&initialpath=${initialPath}`;
+  const src = window.encodeURI(
+    `https://codesandbox.io/embed/${
+      useBackup && backupId ? backupId : id
+    }?view=${view}&fontsize=${fontSize}&hidenavigation=${
+      hideNavigation ? 1 : 0
+    }&expanddevtools=${
+      expandDevTools ? 1 : 0
+    }&module=${module}&initialpath=${initialPath}`
+  );
   useHotkeys("ctrl+b", () => setUseBackup(!useBackup));
+  useHotkeys("ctrl+c", () => copyToClipboard(code));
   return (
     <>
       <Frame
@@ -38,18 +46,28 @@ export function CodeSandbox({
         sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
       />
       <svg
-        width="75px"
-        height="75px"
+        width="3.5rem"
+        height="3.5rem"
         viewBox="0 0 100 100"
         style={{
           position: "absolute",
           bottom: 0,
           right: 0,
-          zIndex: 20001
+          zIndex: 20001,
+          fontSize: "1.5rem"
         }}
       >
-        <polygon points="100 0, 100 100, 0 100" fill="white" stroke="gray" />
-        <text onClick={() => state.next()} x="60" y="75" fill="gray">
+        <polygon
+          points="100 0, 100 100, 0 100"
+          fill="white"
+          stroke="gray"
+        />
+        <text
+          onClick={() => state.next()}
+          x="60"
+          y="75"
+          fill="gray"
+        >
           →
         </text>
       </svg>
@@ -67,7 +85,9 @@ export function Glitch({
   const [useBackup, setUseBackup] = useState(false);
   const src = `https://glitch.com/embed/#!/embed/${
     useBackup && backupId ? backupId : id
-  }?path=${initialPath}&previewSize=${view === "preview" ? 100 : 0}`;
+  }?path=${initialPath}&previewSize=${
+    view === "preview" ? 100 : 0
+  }`;
   useHotkeys("ctrl+b", () => setUseBackup(!useBackup));
   return (
     <>
@@ -77,18 +97,28 @@ export function Glitch({
         sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
       />
       <svg
-        width="75px"
-        height="75px"
+        width="3.5rem"
+        height="3.5rem"
         viewBox="0 0 100 100"
         style={{
           position: "absolute",
           bottom: 0,
           right: 0,
-          zIndex: 20001
+          zIndex: 20001,
+          fontSize: "1.5rem"
         }}
       >
-        <polygon points="100 0, 100 100, 0 100" fill="white" stroke="gray" />
-        <text onClick={() => state.next()} x="60" y="75" fill="gray">
+        <polygon
+          points="100 0, 100 100, 0 100"
+          fill="white"
+          stroke="gray"
+        />
+        <text
+          onClick={() => state.next()}
+          x="60"
+          y="75"
+          fill="gray"
+        >
           →
         </text>
       </svg>
@@ -96,10 +126,20 @@ export function Glitch({
   );
 }
 
-export default function IFrame({ src = "", backupSrc = "", style = {} }) {
+export default function IFrame({
+  src = "",
+  backupSrc = "",
+  style = {},
+  code = ""
+}) {
   const state = useDeck();
   const [useBackup, setUseBackup] = useState(false);
+  const [clipboard, copyToClipboard] = useClipboard();
   useHotkeys("ctrl+b", () => setUseBackup(!useBackup));
+  useHotkeys(
+    "ctrl+m",
+    () => console.log("bla") || copyToClipboard(code)
+  );
   return (
     <>
       <Frame
@@ -109,18 +149,28 @@ export default function IFrame({ src = "", backupSrc = "", style = {} }) {
         sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
       />
       <svg
-        width="75px"
-        height="75px"
+        width="3.5rem"
+        height="3.5rem"
         viewBox="0 0 100 100"
         style={{
           position: "absolute",
           bottom: 0,
           right: 0,
-          zIndex: 20001
+          zIndex: 20001,
+          fontSize: "1.5rem"
         }}
       >
-        <polygon points="100 0, 100 100, 0 100" fill="white" stroke="gray" />
-        <text onClick={() => state.next()} x="60" y="75" fill="gray">
+        <polygon
+          points="100 0, 100 100, 0 100"
+          fill="white"
+          stroke="gray"
+        />
+        <text
+          onClick={() => state.next()}
+          x="60"
+          y="75"
+          fill="gray"
+        >
           →
         </text>
       </svg>

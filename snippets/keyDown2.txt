@@ -1,0 +1,44 @@
+import React, { useState, useEffect } from "react";
+import Character from "./Character";
+import { CHARACTER_MAP, getRandom } from "./utils";
+
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = ({ key }) => {
+      setKey(key);
+      const character = CHARACTER_MAP[key];
+      if (character.sound) {
+        character.sound.play();
+      }
+      setCharacters([...characters, character]);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+  }, [characters]);
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
+  );
+}

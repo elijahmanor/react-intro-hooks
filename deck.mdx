@@ -13,6 +13,7 @@ import IFrame, {
 } from "./components/IFrame";
 import CodeBlock from "./components/CodeBlock";
 import { CodeSurferLayout } from "code-surfer";
+import SideBySide from "./components/SideBySide";
 import styled from "@emotion/styled";
 import future from "@mdx-deck/themes/future";
 import { syntaxHighlighterPrism } from "@mdx-deck/themes";
@@ -132,33 +133,122 @@ export const themes = [future, syntaxHighlighterPrism];
 
 ---
 
-# What is React?
+## What Is React?
+
+> A JavaScript Library for Building User Interfaces --[React](https://facebook.github.io/react/)
 
 ---
 
-# Why React?
+## Who Uses React?
+
+<Split>
+
+<ul>
+  <li>Atlassian</li>
+  <li>Codecademy</li>
+  <li>Dropbox</li>
+  <li>Facebook</li>
+  <li>GitHub</li>
+  <li>Imgur</li>
+  <li>Instagram</li>
+</ul>
+
+<ul>
+  <li>Netflix</li>
+  <li>PayPal</li>
+  <li>Reddit</li>
+  <li>Salesforce</li>
+  <li>Venmo</li>
+  <li>WhatsApp</li>
+  <li>Wired</li>
+</ul>
+
+</Split>
+
+<!-- Add your own entry to [Facebook's Sites Using React Wiki](https://github.com/facebook/react/wiki/Sites-Using-React) -->
 
 ---
 
-# Getting Started
+<img src={require("file-loader!./images/days-since.png")} />
+
+React is an established, stable, and widely used library that is baked by Facebook and highly maintained.
+
+---
+
+## So, it's like Angular or Ember?
+
+Nope
+
+> Lots of people use React as the V in MVC. --[React](https://facebook.github.io/react/)
+
+---
+
+## So, it's a template library?
+
+Nope
+
+> React components are far more powerful than Angular templates; they should be compared with Angular's directives instead --[Pete Hunt (Quora)](http://www.quora.com/Pete-Hunt/Posts/Facebooks-React-vs-AngularJS-A-Closer-Look)
+
+---
+
+## Why is it Compelling?
+
+- Declarative and Composable
+- Virtual DOM
+- One-Way Data Flow
+
+---
+
+## Declarative & Composable
+
+- React is an Abstraction away from the DOM
+- Re-render the whole app on every update (not really)
+- It Simplifies the Mental Model
+- Mix and match components to build UIs
+
+---
+
+## Virtual DOM
+
+- Re-rendering whole app on every update is inefficient
+- Virtual DOM will only update what is necessary
+- It works much like a Gaming Engine
+
+<img
+  src={require("file-loader!./images/mario-sprite.png")}
+/>
+
+---
+
+## One-Way Data Flow
+
+<Split>
+
+> ...2-Way Data Binding... seems to be a good idea until you have a large scale application and then it turns out you have no idea whats going on... --[Misko Hevery](https://www.youtube.com/watch?v=uD6Okha_Yj0#t=1785)
+
+<img
+  src={require("file-loader!./images/2-way-binding.png")}
+/>
+
+</Split>
+
+---
+
+## Why is it Compelling?
+
+> Declarative → Predictable → Confidence → Reliability --[Tom Ochino's React.js Conf keynote](https://www.youtube.com/watch?v=KVZ-P-ZI6W4#t=868)
+
+---
+
+## So, Let's Get Started
+
+<img
+  src={require("file-loader!./images/show-me-the-code-now.gif")}
+/>
 
 ---
 
 # React Sans Build
-
----
-
-# What are Hooks?
-
----
-
-# Rules of Hooks
-
----
-
-<CodeSandbox id="mymjpv3l48" />
-
-<Notes>Lightsaber: Custom useState</Notes>
 
 ---
 
@@ -169,44 +259,370 @@ export const themes = [future, syntaxHighlighterPrism];
   initialPath="index.html"
 />
 
-<Notes>React Sans Build</Notes>
+<Notes>React Sans Build: Basic</Notes>
 
 ---
 
-<CodeSandbox id="tic-tac-toe-usestate-cnp6q" />
+<Glitch
+  id="luminous-daisy"
+  view="editor"
+  initialPath="index.html"
+/>
 
-<Notes>Tic-Tac-Toe useState</Notes>
-
----
-
-<CodeSandbox id="tic-tac-toe-usereducer-memo-6dps4" />
-
-<Notes>Tic-Tac-Toe useReduder</Notes>
-
----
-
-<CodeSandbox id="742892kwp6" />
-
-<Notes>class to hooks side-by-side</Notes>
+<Notes>React Sans Build: Complete</Notes>
 
 ---
 
 <IFrame
-  src="https://nikgraf.github.io/react-hooks/"
-  style={{ backgroundColor: "white" }}
+  src="https://babeljs.io/repl"
+  code={`
+function Ball() {
+  return (
+    <div className="Ball">
+      <span>1</span>
+    </div>
+  );
+}
+ReactDOM.render(<Ball />, document.getElementById("app"));
+`.trim()}
 />
 
-<Notes>Community Hooks</Notes>
+---
+
+<CodeSurferLayout>
+
+```js title="Components"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```js 1:3 subtitle="ES5 Function Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```js 5:7 subtitle="ES6 Fat-Arrow Function Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```js 9 subtitle="ES6 Fat-Arrow Function Component with implicit return"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```js 11:15 subtitle="ES6 Class Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+</CodeSurferLayout>
 
 ---
 
-<CodeSandbox id="n95ljrng2" />
+<CodeSurferLayout>
 
-<Notes>Meme Generator</Notes>
+```js title="JSX Props"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+```js 2 subtitle="Use curly-braces to drop into JavaScript expression"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+```js 5:8 subtitle="You can also assign other JSX to a variable to inject"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+```js 10:12 subtitle="Or you an destructure the value as it comes inside the component"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+</CodeSurferLayout>
 
 ---
 
-# Hello
+<CodeSurferLayout>
+
+```js title="Conditional JSX"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : (
+        <span>Welcome</span>
+      )}
+    </h1>
+  );
+}
+```
+
+```js 4:10 subtitle="You can show one JSX or another based on a truthy expression"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : (
+        <span>Welcome</span>
+      )}
+    </h1>
+  );
+}
+```
+
+```js 4:10 subtitle="You can hide or show content based on a truthy expression"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : null}
+    </h1>
+  );
+}
+```
+
+```js 4:7 subtitle="You can use the && operator to also hide/show if the expression is boolean"
+function MyComponent(props) {
+  return (
+    <h1>
+      {!!props.name && (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>}
+    </h1>
+  );
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```js title="JSX Spread Operator"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      name={props.name}
+      age={props.age}
+      hair={props.hair}
+    />
+  );
+}
+```
+
+```js 1,4:6 subtitle="You could manually add props with matching names"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      name={props.name}
+      age={props.age}
+      hair={props.hair}
+    />
+  );
+}
+```
+
+```js 1:2 subtitle="Or you could spread the properties from the object"
+function MyComponent(props) {
+  return <SubComponent {...props} />;
+}
+```
+
+```js 4:5 subtitle="Spreading is like Object.assign in that it merges from right to left"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      {...props}
+      value={"will override value in props"}
+    />
+  );
+}
+```
+
+```js 1:4 subtitle="Sometimes you don't want to spread everything"
+function MyComponent(props) {
+  const { checked, ...everythingElse } = props;
+  return <SubComponent {...everythingElse} />;
+}
+```
+
+```js 2:6 subtitle="Another technique is using lodash's omit"
+function MyComponent(props) {
+  const everyThingElse = _.omit(props, [
+    "checked",
+    "sometthingelse"
+  ]);
+  return <SubComponent {...everythingElse} />;
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```js title="Gotchas"
+function MyComponent(props) {
+  return (
+    <h1
+      style={{ backgroundColor: "black", color: "white" }}
+    >
+      Hello, {props.name}!
+    </h1>
+  );
+}
+```
+
+```js 4 subtitle="Style prop takes an object, not a string"
+function MyComponent(props) {
+  return (
+    <h1
+      style={{ backgroundColor: "black", color: "white" }}
+    >
+      Hello, {props.name}!
+    </h1>
+  );
+}
+```
+
+```js 2,6 subtitle="There's an implicit children prop"
+function MyComponent(props) {
+  return <div>{props.children}</div>;
+}
+
+function AnotherComponent() {
+  return <MyComponent>I have children!</MyComponent>;
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+# Comparing React Components
+
+## Classes, Functions, and Hooks
 
 ---
 
@@ -359,11 +775,9 @@ class Counter extends React.Component {
 ```jsx
 class ErrorBoundary extends React.Component {
   state = { hasError: false };
-
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
   }
-
   render() {
     if (this.state.hasError) {
       return <h1>Ka-pow!</h1>;
@@ -383,17 +797,6 @@ class ErrorBoundary extends React.Component {
 | Side-Effects     |   Yes   |  -   |   -   |
 | Pure Component   |   Yes   |  -   |   -   |
 | Error Boundaries | **Yes** |  -   |   -   |
-
----
-
-| Feature          | Class | Func | Hooks |
-| ---------------- | :---: | :--: | :---: |
-| Props            |  Yes  |  -   |   -   |
-| State            |  Yes  |  -   |   -   |
-| Lifecycle Events |  Yes  |  -   |   -   |
-| Side-Effects     |  Yes  |  -   |   -   |
-| Pure Component   |  Yes  |  -   |   -   |
-| Error Boundaries |  Yes  |  -   |   -   |
 
 ---
 
@@ -433,7 +836,9 @@ function Counter({ count, onClick }) {
 
 ---
 
-## Function Components with Hooks
+## Function Components
+
+## with Hooks
 
 > Hooks let you use state and other React features in a function component without using a class
 
@@ -450,249 +855,68 @@ function Counter({ count, onClick }) {
 
 ---
 
-## Show Me Some Code Already
+# Reassurance
+
+Hooks are 100% backwards compatible and you don't have to use them if you don't want to.
+
+Don't worry, there are no plans to remove Class Components from React.
 
 ---
 
-<Invert>
+# Why Hooks?
 
-## Invert Layout
-
-</Invert>
-
----
-
-<Split>
-
-![](https://source.unsplash.com/random/768x2048?brooklyn)
-
-## Split Layout
-
-</Split>
+- `this` in Class Components can get confusing
+- Complex Class Components can be hard to understand
+- Sharing state logic across Class Components can be difficult
 
 ---
 
-<SplitRight>
+# Adoption
 
-![](https://source.unsplash.com/random/768x2048?brooklyn)
+It is highly encouraged not to REWRITE ALL THE THINGS.
 
-## SplitRight Layout
-
-</SplitRight>
+Instead to gradually start using hooks as you create new Components in your application.
 
 ---
 
-<Horizontal>
-
-## Horizontal Layout
-
-![](https://source.unsplash.com/random/768x2048?brooklyn)
-
-![](https://source.unsplash.com/random/768x2048?brooklyn)
-
-</Horizontal>
-
----
-
-<FullScreenCode>
-
-```jsx
-<Button>FullScreenCode Layout</Button>
-```
-
-</FullScreenCode>
+# Okay, Let's Get Started with Hooks
 
 ---
 
 <CodeSurferLayout>
 
-```js
-module.exports = {
-  entry: "./path/to/my/entry/file.js"
-};
-```
+```js title="React.useState function"
+import React, { useState } = "react";
 
-```js 4,7 subtitle="Entry and Output"
-const path = require("path");
-
-module.exports = {
-  entry: "./path/to/my/entry/file.js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "my-first-webpack.bundle.js"
-  }
-};
-```
-
-```js 5,7:9
-const path = require("path");
-
-module.exports = {
-  output: {
-    filename: "my-first-webpack.bundle.js"
-  },
-  module: {
-    rules: [{ test: /\.txt$/, use: "raw-loader" }]
-  }
-};
-```
-
-</CodeSurferLayout>
-
----
-
-<CodeSurferLayout>
-
-```js
-import React, { Component, Fragment } from "react";
-import KeyCodeBlock from "./KeyCodeBlock";
-
-export default class KeyCode extends Component {
-  constructor() {
-    super();
-    this.state = { key: "", keyCode: "", code: "" };
-    this.handleKey = this.handleKey.bind(this);
-  }
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKey);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKey);
-  }
-  handleKey(e) {
-    this.setState({
-      keyCode: e.which,
-      key: e.key,
-      code: e.code
-    });
-  }
-  render() {
-    const { keyCode, key, code } = this.state;
-    return (
-      <main className="KeyCode">
-        {keyCode ? (
-          <Fragment>
-            <KeyCodeBlock header="keyCode" code={keyCode} />
-            <KeyCodeBlock header="key" code={key} />
-            <KeyCodeBlock header="code" code={code} />
-          </Fragment>
-        ) : (
-          <h1>Press Any Key</h1>
-        )}
-      </main>
-    );
-  }
+function Counter() {
+  const returnArray = useState("default value");
 }
 ```
 
-```js
-import React, { Component, Fragment } from "react";
-import KeyCodeBlock from "./KeyCodeBlock";
+```js 4 subtitle="Call React.useState and provide a default value"
+import React, { useState } = "react";
 
-export default class KeyCode extends Component {
-  state = { key: "", keyCode: "", code: "" };
-  componentDidMount() {
-    document.addEventListener("keydown", this.handleKey);
-  }
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.handleKey);
-  }
-  handleKey = e => {
-    this.setState({
-      keyCode: e.which,
-      key: e.key,
-      code: e.code
-    });
-  };
-  render() {
-    const { keyCode, key, code } = this.state;
-    return (
-      <main className="KeyCode">
-        {keyCode ? (
-          <Fragment>
-            <KeyCodeBlock header="keyCode" code={keyCode} />
-            <KeyCodeBlock header="key" code={key} />
-            <KeyCodeBlock header="code" code={code} />
-          </Fragment>
-        ) : (
-          <h1>Press Any Key</h1>
-        )}
-      </main>
-    );
-  }
+function Counter() {
+  const returnArray = useState("initial value");
 }
 ```
 
-```js
-import React, {
-  Fragment,
-  useState,
-  useEffect
-} from "react";
-import KeyCodeBlock from "./KeyCodeBlock";
+```js 6,7 subtitle="Returned array has value & update function"
+import React, { useState } = "react";
 
-export default function KeyCode() {
-  const [{ keyCode, key, code }, setCodes] = useState({});
+function Counter() {
+  const returnArray = useState("default value");
 
-  useEffect(() => {
-    const handleKey = ({ keyCode, key, code }) =>
-      setCodes({ keyCode, key, code });
-    document.addEventListener("keydown", handleKey);
-    return () =>
-      document.removeEventListener("keydown", handleKey);
-  }, []);
-
-  return (
-    <main className="KeyCode">
-      {keyCode ? (
-        <Fragment>
-          <KeyCodeBlock header="keyCode" code={keyCode} />
-          <KeyCodeBlock header="key" code={key} />
-          <KeyCodeBlock header="code" code={code} />
-        </Fragment>
-      ) : (
-        <h1>Press Any Key</h1>
-      )}
-    </main>
-  );
+  const value = returnArray[0];
+  const setValue = returnArray[1];
 }
 ```
 
-```js
-import React, {
-  Fragment,
-  useState,
-  useEffect
-} from "react";
-import KeyCodeBlock from "./KeyCodeBlock";
+```js 4 subtitle="You can use array destructuring instead"
+import React, { useState } = "react";
 
-const useDocumentKeyCode = () => {
-  const [codes, setCodes] = useState({});
-  useEffect(() => {
-    const handleKey = ({ keyCode, key, code }) =>
-      setCodes({ keyCode, key, code });
-    document.addEventListener("keydown", handleKey);
-    return () =>
-      document.removeEventListener("keydown", handleKey);
-  }, []);
-  return codes;
-};
-
-export default function KeyCode() {
-  const { keyCode, key, code } = useDocumentKeyCode();
-  return (
-    <main className="KeyCode">
-      {keyCode ? (
-        <Fragment>
-          <KeyCodeBlock header="keyCode" code={keyCode} />
-          <KeyCodeBlock header="key" code={key} />
-          <KeyCodeBlock header="code" code={code} />
-        </Fragment>
-      ) : (
-        <h1>Press Any Key</h1>
-      )}
-    </main>
-  );
+function Counter() {
+  const [value, setValue] = useState("default value");
 }
 ```
 
@@ -700,11 +924,445 @@ export default function KeyCode() {
 
 ---
 
-export { comic as theme } from "@mdx-deck/themes";
+<CodeSandbox id="mymjpv3l48" module="/src/App1.js" />
 
+<Notes>Lightsaber: Custom useState</Notes>
+
+---
+
+# Rules of Hooks
+
+## Only Call Hooks at the Top Level
+
+Don’t call Hooks inside loops, conditions, or nested functions
+
+---
+
+# Rules of Hooks
+
+## Only Call Hooks from React Functions
+
+Don’t call Hooks from regular JavaScript functions.
+
+---
+
+## ESLint Rules to the Rescue!
+
+```shell
+npm install eslint-plugin-react-hooks --save-dev
+```
+
+If you use `create-react-app` or CodeSandbox
+
+then it's already configured
+
+---
+
+<CodeSandbox id="mymjpv3l48" module="/src/App2.js" />
+
+<Notes>Lightsaber: Custom useState</Notes>
+
+---
+
+<CodeSurferLayout>
+
+```js title="React.useEffect function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect();
+  /* ... */
+}
+```
+
+```js 4 subtitle="Call the React.useEffect function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect();
+  /* ... */
+}
+```
+
+```js 5:10 subtitle="Use React.useEffect and provide a callback"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```js 11:12 subtitle="Return an optional clean-up function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```js 5:12 subtitle="By default callback & clean-up executed before each effect"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```js 13 subtitle="Can optionally provide 2nd argument to adjust frequency"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  }, [additional, args, go, here]);
+  /* ... */
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSandbox
+  id="usekeydown-custom-hook-sz0ep"
+  module="/src/App1.js"
+/>
+
+<Notes>KeyDown Exercises</Notes>
+
+---
+
+<SideBySide
+  before={
+    require("raw-loader!./snippets/keyDown1.txt").default
+  }
+  after={
+    require("raw-loader!./snippets/keyDown2.txt").default
+  }
+  intents={{
+    before: [
+      {
+        title: "keydown",
+        color: "#FFB7C3 ",
+        lines: [8, 11, 12, 13, 14, 17, 18, 19, 20]
+      },
+      {
+        title: "key state",
+        color: "#FFE787",
+        lines: [7, 22, 27, 28, 29, 30]
+      }
+    ],
+    after: [
+      {
+        title: "keydown",
+        color: "#FFB7C3",
+        lines: [17, 18, 19, 20, 21, 22]
+      },
+      {
+        title: "key state",
+        color: "#FFE787",
+        lines: [6, 10]
+      }
+    ]
+  }}
+/>
+
+---
+
+<SideBySide
+  before={
+    require("raw-loader!./snippets/keyDown2.txt").default
+  }
+  after={
+    require("raw-loader!./snippets/keyDown3.txt").default
+  }
+  intents={{
+    before: [
+      {
+        title: "keydown",
+        color: "#FFB7C3",
+        lines: [17, 18, 19, 20, 21, 22]
+      },
+      {
+        title: "key state",
+        color: "#FFE787",
+        lines: [6, 10]
+      }
+    ],
+    after: [
+      {
+        title: "keydown",
+        color: "#FFB7C3",
+        lines: [12, 13, 14, 15, 16, 17]
+      },
+      {
+        title: "key state",
+        color: "#FFE787",
+        lines: [5, 9, 20, 26]
+      }
+    ]
+  }}
+/>
+
+---
+
+<IFrame
+  src="https://nikgraf.github.io/react-hooks/"
+  style={{ backgroundColor: "white" }}
+/>
+
+<Notes>Community Hooks</Notes>
+
+---
+
+## Forms
+
+### Controlled & Uncontrolled
+
+---
+
+<CodeSandbox id="n95ljrng2" module="/src/App1.js" />
+
+<Notes>Meme Generator</Notes>
+
+---
+
+# Flow of Data
+
+---
+
+<CodeSandbox
+  id="tic-tac-toe-usestate-cnp6q"
+  module="/src/TicTacToe.js"
+/>
+
+<Notes>Tic-Tac-Toe useState</Notes>
+
+---
+
+<CodeSurferLayout>
+
+```js title="React.useReducer function"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```js 8:11 subtitle="Call the React.useEffect passing a reducer function and initialState"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```js 1 subtitle="Initial state is an object with default values"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```js 4:11 subtitle="Reducer accepts existing state and incoming action"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "+":
+      return { count: state.count + 1 };
+    case "-":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```js 4:6,22 subtitle="dispatch triggers reducer to get engaged"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "+":
+      return { count: state.count + 1 };
+    case "-":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSandbox
+  id="tic-tac-toe-usereducer-memo-6dps4"
+  module="/src/TicTacToe1.js"
+/>
+
+<Notes>Tic-Tac-Toe useReduder</Notes>
+
+---
+
+# Thank you!
+
+<a
+href="https://bit.ly/react-intro-hooks"
+style={{
+      fontFamily: "monospace",
+      fontSize: "3rem",
+      color: "white",
+      textDecoration: "none",
+      webkitTextStrokeWidth: "2px",
+      webkitTextStrokeColor: "black"
+    }}>bit.ly/react-intro-hooks</a>
+
+<!--
 # Resources
 
 - [Fake useState](https://codesandbox.io/s/mymjpv3l48)
 - [Custom Hook (useTheForce)]()
 - [StarWars Glyphicons](http://starwarsglyphicons.com/cheatsheet.phtml)
 - [Photo](https://unsplash.com/photos/KBE_Bvq1U30) by [Suad Kamardeen](https://unsplash.com/@skmuse_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+-->
+
+<!--
+  https://codesandbox.io/s/mymjpv3l48
+  useEffect(() => {
+    // http://matthewrayfield.com/articles/animating-urls-with-javascript-and-emojis
+    const saber = "o()xxx[{";
+    window.location.hash = document.title = `${saber}${":".repeat(
+      percent / 5
+    )}${percent ? ">" : ""}`.trim();
+  });
+-->
