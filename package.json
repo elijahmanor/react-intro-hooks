@@ -2,13 +2,28 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "mdx-deck deck.mdx",
+    "start": "mdx-deck -p 1337 deck.mdx",
     "build": "mdx-deck build deck.mdx",
-    "test": "echo \"there are no tests\""
+    "help": "mdx-deck",
+    "gh-pages": "git subtree push --prefix dist origin gh-pages",
+    "gh-pages:force": "git push origin `git subtree split --prefix dist master`:gh-pages --force",
+    "gh-pages:refresh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
+    "deploy": "npm run build && cd dist && npx now",
+    "alias": "npx now alias https://dist-tcuzlrgcyt.now.sh react-intro-hooks"
   },
   "devDependencies": {
     "code-surfer": "3.0.0-beta.1",
     "mdx-deck": "3.0.13"
   },
-  "name": "react-intro-hooks-2"
+  "name": "react-intro-hooks-2",
+  "dependencies": {
+    "file-loader": "^4.2.0",
+    "lodash": "^4.17.15",
+    "polished": "^3.4.2",
+    "prism-react-renderer": "^1.0.2",
+    "raw-loader": "^3.1.0",
+    "react-hook-clipboard": "^1.0.0",
+    "react-hotkeys-hook": "^1.5.3",
+    "styled-components": "^4.4.1"
+  }
 }

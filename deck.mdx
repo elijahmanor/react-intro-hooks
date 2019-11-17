@@ -3,143 +3,1680 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import { github, vsDark} from "@code-surfer/themes";
 
-export const theme = vsDark;
+import {
+  Head,
+  Notes,
+  Image,
+  Appear,
+  Invert,
+  Split,
+  SplitRight,
+  Horizontal,
+  FullScreenCode
+} from "mdx-deck";
+import SideBySide from "./components/SideBySide";
+// import CodeBlock from "./components/CodeBlock";
+import Jokes from "./components/Jokes";
+import IFrame, {
+  Glitch,
+  CodeSandbox
+} from "./components/IFrame";
+import "./deck.css";
 
-# Hello 👋
+import myTheme from "./theme";
+import {highlight, prism } from "mdx-deck/themes"
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+export const themes = [vsDark, myTheme, prism];
+
+import backgroundImage from './images/suad-kamardeen-786325-unsplash.jpg'
+
+<Head>
+  <title>Intro to React: Hooks Edition</title>
+  <meta name="twitter:site" content="@elijahmanor" />
+  <meta
+    name="twitter:title"
+    content="Intro to React: Hooks Edition"
+  />
+  <meta
+    name="twitter:description"
+    content="A slide deck introducing React and Hooks"
+  />
+  <meta
+    property="og:url"
+    content="https://elijahmanor.com/react-intro-hooks"
+  />
+  <meta
+    property="og:title"
+    content="Intro to React: Hooks Edition"
+  />
+  <meta
+    property="og:description"
+    content="A slide deck introducing React and Hooks"
+  />
+</Head>
+
+<Image
+  src={backgroundImage}
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    color: "white",
+    backgroundColor: "white",
+    animation: "filters 60s ease-in-out 5s infinite"
+  }}
+/>
+<div
+  style={{
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "90vw"
+  }}
+>
+  <h1
+    style={{
+      color: "black",
+      webkitTextStrokeWidth: "3px",
+      webkitTextStrokeColor: "white",
+      fontSize: "5rem",
+      margin: "1rem 0 1rem 0",
+      textTransform: "uppercase",
+      textAlign: "center"
+    }}
+  >
+    Intro to React
+  </h1>
+  <h2
+    style={{
+      color: "black",
+      webkitTextStrokeWidth: "3px",
+      webkitTextStrokeColor: "white",
+      fontSize: "4rem",
+      margin: "1rem 0 1rem 0",
+      textTransform: "uppercase"
+    }}
+  >
+    Hooks Edition
+  </h2>
+  <a
+    href="https://twitter.com/elijahmanor"
+    style={{
+      fontFamily: "monospace",
+      fontSize: "4rem",
+      color: "black",
+      textDecoration: "none",
+      webkitTextStrokeWidth: "2px",
+      webkitTextStrokeColor: "white"
+    }}
+  >
+    @elijahmanor
+  </a>
+</div>
+
+<Jokes
+  style={{
+    position: "absolute",
+    top: "0",
+    left: "0",
+    right: "0",
+    height: "5rem",
+    fontFamily: "monospace",
+    backgroundColor: "black",
+    fontSize: "1.5rem",
+    padding: "0.5rem 2rem",
+    color: "white"
+  }}
+/>
+
+<Notes>
+  <ul>
+    <li>
+      Left Arrow - Go to previous slide (or step in Appear)
+    </li>
+    <li>
+      Right Arrow - Go to next slide (or step in Appear)
+    </li>
+    <li>Space - Go to next slide (or step in Appear)</li>
+    <li>Option + P - Toggle Presenter Mode</li>
+    <li>Option + O - Toggle Overview Mode</li>
+  </ul>
+</Notes>
+
+---
+
+## Elijah Manor
+
+### [Planview](https://www.planview.com/) / [LeanKit](https://leankit.com/)
+
+### Front-End Web Developer
+
+`npx elijahmanor`
+
+---
+
+## What Is React?
+
+> A JavaScript Library for Building User Interfaces --[React](https://facebook.github.io/react/)
+
+---
+
+## Who Uses React?
+
+<Split style={{ width: '75vw'}}>
+
+<ul>
+  <li>Atlassian</li>
+  <li>Dropbox</li>
+  <li>Facebook</li>
+  <li>GitHub</li>
+  <li>Imgur</li>
+  <li>Instagram</li>
+</ul>
+
+<ul>
+  <li>Netflix</li>
+  <li>PayPal</li>
+  <li>Reddit</li>
+  <li>Salesforce</li>
+  <li>WhatsApp</li>
+  <li>Wired</li>
+</ul>
+
+</Split>
+
+<!-- Add your own entry to [Facebook's Sites Using React Wiki](https://github.com/facebook/react/wiki/Sites-Using-React) -->
+
+---
+
+import daysSince from  "./images/days-since.png";
+
+<img style={{ height: '50vh' }} src={daysSince} />
+
+React is an established, stable, and widely used library that is baked by Facebook and highly maintained.
+
+---
+
+## So, it's like Angular or Ember?
+
+Nope
+
+> Lots of people use React as the V in MVC. --[React](https://facebook.github.io/react/)
+
+---
+
+## So, it's a template library?
+
+Nope
+
+> React components are far more powerful than Angular templates; they should be compared with Angular's directives instead --[Pete Hunt (Quora)](http://www.quora.com/Pete-Hunt/Posts/Facebooks-React-vs-AngularJS-A-Closer-Look)
+
+---
+
+## Why is it Compelling?
+
+- Declarative and Composable
+- Virtual DOM
+- One-Way Data Flow
+
+---
+
+## Declarative & Composable
+
+- React is an Abstraction away from the DOM
+- Re-render the whole app on every update (not really)
+- It Simplifies the Mental Model
+- Mix and match components to build UIs
+
+---
+
+import marioSprite from "./images/mario-sprite.png";
+
+## Virtual DOM
+
+- Re-rendering whole app on every update is inefficient
+- Virtual DOM will only update what is necessary
+- It works much like a Gaming Engine
+
+<img
+  src={marioSprite}
+/>
+
+---
+
+import twoWayDataBinding from "./images/2-way-binding.png";
+
+## One-Way Data Flow
+
+<Split>
+
+> ...2-Way Data Binding... seems to be a good idea until you have a large scale application and then it turns out you have no idea whats going on... --[Misko Hevery](https://www.youtube.com/watch?v=uD6Okha_Yj0#t=1785)
+
+<img
+  style={{ width: '45vw'}}
+  src={twoWayDataBinding}
+/>
+
+</Split>
+
+---
+
+## Why is it Compelling?
+
+> Declarative → Predictable → Confidence → Reliability --[Tom Ochino's React.js Conf keynote](https://www.youtube.com/watch?v=KVZ-P-ZI6W4#t=868)
+
+---
+
+import showMeCode from "./images/show-me-the-code-now.gif";
+
+## So, Let's Get Started
+
+<img
+  src={showMeCode}
+/>
+
+---
+
+# React Sans Build
+
+---
+
+<Glitch
+  id="funky-gum"
+  backupId="luminous-daisy"
+  view="editor"
+  initialPath="index.html"
+/>
+
+<Notes>React Sans Build: Basic</Notes>
+
+---
+
+<Glitch
+  id="luminous-daisy"
+  view="editor"
+  initialPath="index.html"
+/>
+
+<Notes>React Sans Build: Complete</Notes>
+
+---
+
+<IFrame
+  src="https://babeljs.io/repl"
+  code={`
+function Ball() {
+  return (
+    <div className="Ball">
+      <span>1</span>
+    </div>
+  );
+}
+ReactDOM.render(<Ball />, document.getElementById("app"));
+`.trim()}
+/>
 
 ---
 
 <CodeSurfer>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
+```jsx title="Components"
+function Component1() {
+  return <h1>Hello, World!</h1>;
 }
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
 
-  if (!sit || ut < 1) {
-    return [];
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
   }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
 }
 ```
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
+```jsx 1:3 subtitle="ES5 Function Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
 }
 
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
   }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
 }
 ```
 
-```diff 1[10:14],2[15:19],3[22:27],10:12
+```jsx 5:7 subtitle="ES6 Fat-Arrow Function Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
 
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```jsx 9 subtitle="ES6 Fat-Arrow Function Component with implicit return"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
+```
+
+```jsx 11:15 subtitle="ES6 Class Component"
+function Component1() {
+  return <h1>Hello, World!</h1>;
+}
+
+const Component2 = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+const Component3 = () => <h1>Hello, World!</h1>;
+
+class Component4 extends React.Component {
+  render() {
+    return <h1>Hello, World!</h1>;
+  }
+}
 ```
 
 </CodeSurfer>
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+<CodeSurfer>
 
-<Step>
+```jsx title="JSX Props"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
 
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+```jsx 2 subtitle="Use curly-braces to drop into JavaScript expression"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+```jsx 5:8 subtitle="You can also assign other JSX to a variable to inject"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+```jsx 10:12 subtitle="Or you an destructure the value as it comes inside the component"
+function MyComponent1(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function MyComponent2(props) {
+  const strongName = <strong>{props.name}</strong>;
+  return <h1>Hello, {strongName}!</h1>;
+}
+
+function MyComponent3({ name }) {
+  return <h1 title={name}>Hello, {name}!</h1>;
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx title="Conditional JSX"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : (
+        <span>Welcome</span>
+      )}
+    </h1>
+  );
+}
+```
+
+```jsx 4:10 subtitle="You can show one JSX or another based on a truthy expression"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : (
+        <span>Welcome</span>
+      )}
+    </h1>
+  );
+}
+```
+
+```jsx 4:10 subtitle="You can hide or show content based on a truthy expression"
+function MyComponent(props) {
+  return (
+    <h1>
+      {props.name ? (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>
+      ) : null}
+    </h1>
+  );
+}
+```
+
+```jsx 4:7 subtitle="You can use the && operator to also hide/show if the expression is boolean"
+function MyComponent(props) {
+  return (
+    <h1>
+      {!!props.name && (
+        <span>
+          Hello, <strong>{props.name}</strong>!
+        </span>}
+    </h1>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx title="JSX Spread Operator"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      name={props.name}
+      age={props.age}
+      hair={props.hair}
+    />
+  );
+}
+```
+
+```jsx 1,4:6 subtitle="You could manually add props with matching names"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      name={props.name}
+      age={props.age}
+      hair={props.hair}
+    />
+  );
+}
+```
+
+```jsx 1:2 subtitle="Or you could spread the properties from the object"
+function MyComponent(props) {
+  return <SubComponent {...props} />;
+}
+```
+
+```jsx 4:5 subtitle="Spreading is like Object.assign in that it merges from right to left"
+function MyComponent(props) {
+  return (
+    <SubComponent
+      {...props}
+      value={"will override value in props"}
+    />
+  );
+}
+```
+
+```jsx 1:4 subtitle="Sometimes you don't want to spread everything"
+function MyComponent(props) {
+  const { checked, ...everythingElse } = props;
+  return <SubComponent {...everythingElse} />;
+}
+```
+
+```jsx 2:6 subtitle="Another technique is using lodash's omit"
+function MyComponent(props) {
+  const everyThingElse = _.omit(props, [
+    "checked",
+    "sometthingelse"
+  ]);
+  return <SubComponent {...everythingElse} />;
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx title="Gotchas"
+function MyComponent(props) {
+  return (
+    <h1
+      style={{ backgroundColor: "black", color: "white" }}
+    >
+      Hello, {props.name}!
+    </h1>
+  );
+}
+```
+
+```jsx 4 subtitle="Style prop takes an object, not a string"
+function MyComponent(props) {
+  return (
+    <h1
+      style={{ backgroundColor: "black", color: "white" }}
+    >
+      Hello, {props.name}!
+    </h1>
+  );
+}
+```
+
+```jsx 2,6 subtitle="There's an implicit children prop"
+function MyComponent(props) {
+  return <div>{props.children}</div>;
+}
+
+function AnotherComponent() {
+  return <MyComponent>I have children!</MyComponent>;
+}
+```
+
+</CodeSurfer>
+
+---
+
+# Comparing React Components
+
+## Classes, Functions, and Hooks
+
+---
+
+| Feature          | Class | Func | Hooks |
+| ---------------- | :---: | :--: | :---: |
+| Props            |   -   |  -   |   -   |
+| State            |   -   |  -   |   -   |
+| Lifecycle Events |   -   |  -   |   -   |
+| Side-Effects     |   -   |  -   |   -   |
+| Pure Component   |   -   |  -   |   -   |
+| Error Boundaries |   -   |  -   |   -   |
+
+---
+
+## Class Components
+
+---
+
+<CodeSurfer>
+
+```jsx title="Class Component: Props"
+class Counter extends React.Component {
+  render() {
+    return (
+      <button onClick={this.props.onClick}>
+        {this.props.count}
+      </button>
+    );
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            | **Yes** |  -   |   -   |
+| State            |    -    |  -   |   -   |
+| Lifecycle Events |    -    |  -   |   -   |
+| Side-Effects     |    -    |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+<CodeSurfer>
+
+```jsx title="Class Component: State"
+class Counter extends React.Component {
+  state = { count: 0 };
+  handleClick = () => {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+</CodeSurfer>
+
+<!-- https://codesandbox.io/s/peaceful-water-x2rp4 -->
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            | **Yes** |  -   |   -   |
+| Lifecycle Events |    -    |  -   |   -   |
+| Side-Effects     |    -    |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+<CodeSurfer>
+
+```jsx title="Classes: Lifecycle & Effects"
+class Counter extends React.Component {
+  /* ... */
+  componentDidMount() {
+    window.addEventListener("keypress", this.handleClear);
+  }
+  componentWillUnmount() {
+    window.removeEventListener(
+      "keypress",
+      this.handleClear
+    );
+  }
+  /* ... */
+}
+```
+
+</CodeSurfer>
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events | **Yes** |  -   |   -   |
+| Side-Effects     | **Yes** |  -   |   -   |
+| Pure Component   |    -    |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+<CodeSurfer>
+
+```jsx title="Classes: Pure Component"
+class Counter extends React.PureComponent {
+  /* ... */
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer>
+
+```jsx title="Classes: Pure Component"
+class Counter extends React.Component {
+  /* ... */
+  shouldComponentUpdate(nextProps, nextState) {
+    if ( /* props or state have changed */ ) {
+      return true;
+    }
+    return false;
+  }
+  /* ... */
+}
+```
+
+</CodeSurfer>
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events |   Yes   |  -   |   -   |
+| Side-Effects     |   Yes   |  -   |   -   |
+| Pure Component   | **Yes** |  -   |   -   |
+| Error Boundaries |    -    |  -   |   -   |
+
+---
+
+<CodeSurfer>
+
+```jsx title="Classes: Error Boundaries"
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+  }
+  render() {
+    if (this.state.hasError) {
+      return <h1>Ka-pow!</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+| Feature          |  Class  | Func | Hooks |
+| ---------------- | :-----: | :--: | :---: |
+| Props            |   Yes   |  -   |   -   |
+| State            |   Yes   |  -   |   -   |
+| Lifecycle Events |   Yes   |  -   |   -   |
+| Side-Effects     |   Yes   |  -   |   -   |
+| Pure Component   |   Yes   |  -   |   -   |
+| Error Boundaries | **Yes** |  -   |   -   |
+
+---
+
+## Function Components
+
+---
+
+<CodeSurfer>
+
+```jsx title="Functions: Props"
+function Counter({ count, onClick }) {
+  return <button onClick={onClick}>{count}</button>;
+}
+```
+
+</CodeSurfer>
+
+---
+
+| Feature          | Class |  Func   | Hooks |
+| ---------------- | :---: | :-----: | :---: |
+| Props            |  Yes  | **Yes** |   -   |
+| State            |  Yes  |    -    |   -   |
+| Lifecycle Events |  Yes  |    -    |   -   |
+| Side-Effects     |  Yes  |    -    |   -   |
+| Pure Component   |  Yes  |    -    |   -   |
+| Error Boundaries |  Yes  |    -    |   -   |
+
+---
+
+| Feature          | Class |  Func  | Hooks |
+| ---------------- | :---: | :----: | :---: |
+| Props            |  Yes  |  Yes   |   -   |
+| State            |  Yes  | **No** |   -   |
+| Lifecycle Events |  Yes  | **No** |   -   |
+| Side-Effects     |  Yes  | **No** |   -   |
+| Pure Component   |  Yes  | **No** |   -   |
+| Error Boundaries |  Yes  | **No** |   -   |
+
+---
+
+## Function Components
+
+## with Hooks
+
+> Hooks let you use state and other React features in a function component without using a class
+
+---
+
+| Feature          | Class | Func |  Hooks   |
+| ---------------- | :---: | :--: | :------: |
+| Props            |  Yes  | Yes  | **Yes**  |
+| State            |  Yes  |  No  | **Yes**  |
+| Lifecycle Events |  Yes  |  No  | **Some** |
+| Side-Effects     |  Yes  |  No  | **Yes**  |
+| Pure Component   |  Yes  |  No  | **Yes**  |
+| Error Boundaries |  Yes  |  No  |  **No**  |
+
+---
+
+# Reassurance
+
+Hooks are 100% backwards compatible and you don't have to use them if you don't want to.
+
+Don't worry, there are no plans to remove Class Components from React.
+
+---
+
+# Why Hooks?
+
+- `this` in Class Components can get confusing
+- Complex Class Components can be hard to understand
+- Sharing state logic across Class Components can be difficult
+
+---
+
+# Adoption
+
+It is highly encouraged not to REWRITE ALL THE THINGS.
+
+Instead to gradually start using hooks as you create new Components in your application.
+
+---
+
+# Okay, Let's Get Started with Hooks
+
+---
+
+<CodeSurfer>
+
+```jsx title="React.useState function"
+import React, { useState } = "react";
+
+function Counter() {
+  const returnArray = useState("default value");
+}
+```
+
+```jsx 4 subtitle="Call React.useState and provide a default value"
+import React, { useState } = "react";
+
+function Counter() {
+  const returnArray = useState("initial value");
+}
+```
+
+```jsx 6,7 subtitle="Returned array has value & update function"
+import React, { useState } = "react";
+
+function Counter() {
+  const returnArray = useState("default value");
+
+  const value = returnArray[0];
+  const setValue = returnArray[1];
+}
+```
+
+```jsx 4 subtitle="You can use array destructuring instead"
+import React, { useState } = "react";
+
+function Counter() {
+  const [value, setValue] = useState("default value");
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSandbox id="mymjpv3l48" module="/src/App1.js" />
+
+<Notes>Lightsaber: Custom useState</Notes>
+
+---
+
+# Rules of Hooks
+
+## Only Call Hooks at the Top Level
+
+Don’t call Hooks inside loops, conditions, or nested functions
+
+---
+
+# Rules of Hooks
+
+## Only Call Hooks from React Functions
+
+Don’t call Hooks from regular JavaScript functions.
+
+---
+
+## ESLint Rules to the Rescue!
+
+```shell
+npm install eslint-plugin-react-hooks --save-dev
+```
+
+If you use `create-react-app` or CodeSandbox
+
+then it's already configured
+
+---
+
+<CodeSandbox id="mymjpv3l48" module="/src/App2.js" />
+
+<Notes>Lightsaber: Custom useState</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx title="React.useEffect function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect();
+  /* ... */
+}
+```
+
+```jsx 4 subtitle="Call the React.useEffect function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect();
+  /* ... */
+}
+```
+
+```jsx 5:10 subtitle="Use React.useEffect and provide a callback"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```jsx 11:12 subtitle="Return an optional clean-up function"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```jsx 5:12 subtitle="By default callback & clean-up executed before each effect"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  });
+  /* ... */
+}
+```
+
+```jsx 13 subtitle="Can optionally provide 2nd argument to adjust frequency"
+import React, { useEffect } from "react";
+
+function Counter() {
+  useEffect(() => {
+    const displaySize = ({
+      target: { innerHeight, innerWidth }
+    }) => {
+      document.title = `${innerHeight} x ${innerWidth}`;
+    };
+    window.addEventListener("resize", displaySize);
+    return () =>
+      window.removeEventListener("resize", displaySize);
+  }, [additional, args, go, here]);
+  /* ... */
+}
+```
+
+</CodeSurfer>
+
+---
+
+import hookFlow from "./images/hook-flow.png"
+
+<img
+  style={{ height: "75vh" }}
+  src={hookFlow}
+/>
+
+Source: [donavon/hook-flow](https://github.com/donavon/hook-flow)
+
+---
+
+<CodeSandbox
+  id="usekeydown-custom-hook-sz0ep"
+  module="/src/App1.js"
+/>
+
+<Notes>KeyDown Exercises</Notes>
+
+---
+
+<CodeSurferColumns>
+
+<Step subtitle="Basic Render">
+
+```jsx
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [] };
+  }
+  render() {
+    const { characters } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+      </div>
+    );
+  }
+}
+```
+
+```jsx
+export default function App() {
+  const [characters] = useState([]);
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+    </div>
+  );
+}
 ```
 
 </Step>
 
-<Step>
+<Step subtitle="Add Key Down Handler">
 
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+```jsx 4:30
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [], key: "" };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  handleKeyDown({ key }) {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    this.setState({
+      key,
+      characters: [...this.state.characters, character]
+    });
+  }
+  render() {
+    const { characters, key } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+        {!!key && <div className="App-key">{key}</div>}
+      </div>
+    );
+  }
+}
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+```jsx 2:20
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const [key, setKey] = useState("");
 
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
+  useEffect(() => {
+    const handleKeyDown = ({ key }) => {
+      setKey(key);
+      const character = CHARACTER_MAP[key];
+      if (character.sound) {
+        character.sound.play();
+      }
+      setCharacters([...characters, character]);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+  }, [characters]);
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
   );
+}
+```
+
+</Step>
+
+<Step subtitle="Where does State live?">
+
+```jsx 4,24:27
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [], key: "" };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  handleKeyDown({ key }) {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    this.setState({
+      key,
+      characters: [...this.state.characters, character]
+    });
+  }
+  render() {
+    const { characters, key } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+        {!!key && <div className="App-key">{key}</div>}
+      </div>
+    );
+  }
+}
+```
+
+```jsx 2:3,7,12
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = ({ key }) => {
+      setKey(key);
+      const character = CHARACTER_MAP[key];
+      if (character.sound) {
+        character.sound.play();
+      }
+      setCharacters([...characters, character]);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+  }, [characters]);
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
+  );
+}
+```
+
+</Step>
+
+<Step subtitle="Event Add & Remove Listeners">
+
+```jsx 7:18
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [], key: "" };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  handleKeyDown({ key }) {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    this.setState({
+      key,
+      characters: [...this.state.characters, character]
+    });
+  }
+  render() {
+    const { characters, key } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+        {!!key && <div className="App-key">{key}</div>}
+      </div>
+    );
+  }
+}
+```
+
+```jsx 14:19
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const [key, setKey] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = ({ key }) => {
+      setKey(key);
+      const character = CHARACTER_MAP[key];
+      if (character.sound) {
+        character.sound.play();
+      }
+      setCharacters([...characters, character]);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+  }, [characters]);
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
+  );
+}
+```
+
+</Step>
+
+<Step subtitle="Introduce a Custom Hook">
+
+```jsx
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [], key: "" };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  handleKeyDown({ key }) {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    this.setState({
+      key,
+      characters: [...this.state.characters, character]
+    });
+  }
+  render() {
+    const { characters, key } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+        {!!key && <div className="App-key">{key}</div>}
+      </div>
+    );
+  }
+}
+```
+
+```jsx 1:16,20:26
+const useKeyDown = onChange => {
+  const [key, setKey] = useState("");
+  useEffect(() => {
+    const handleKeyDown = ({ key }) => {
+      setKey(key);
+      onChange(key);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+  }, [onChange]);
+  return key;
 };
+
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const key = useKeyDown(key => {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    setCharacters([...characters, character]);
+  });
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
+  );
+}
+```
+
+</Step>
+
+<Step subtitle="Pull Out Custom Hook">
+
+```jsx
+export default class App extends Component {
+  constructor(...args) {
+    super(...args);
+    this.state = { characters: [], key: "" };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+  componentDidMount() {
+    document.addEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  componentWillUnmount() {
+    document.removeEventListener(
+      "keydown",
+      this.handleKeyDown
+    );
+  }
+  handleKeyDown({ key }) {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    this.setState({
+      key,
+      characters: [...this.state.characters, character]
+    });
+  }
+  render() {
+    const { characters, key } = this.state;
+    return (
+      <div className="App">
+        {characters.map((character, i) => {
+          const props = {
+            type: character.icon,
+            color: `#${Math.floor(
+              Math.random() * 16777215
+            ).toString(16)}`,
+            size: getRandom(1, 10),
+            top: `${getRandom(0, 100)}%`,
+            left: `${getRandom(0, 100)}%`,
+            rotate: getRandom(0, 360)
+          };
+          return <Character key={i} {...props} />;
+        })}
+        {!!key && <div className="App-key">{key}</div>}
+      </div>
+    );
+  }
+}
+```
+
+```jsx
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const key = useKeyDown(key => {
+    const character = CHARACTER_MAP[key];
+    if (character.sound) {
+      character.sound.play();
+    }
+    setCharacters([...characters, character]);
+  });
+
+  return (
+    <div className="App">
+      {characters.map((character, i) => {
+        const props = {
+          type: character.icon,
+          color: `#${Math.floor(
+            Math.random() * 16777215
+          ).toString(16)}`,
+          size: getRandom(1, 10),
+          top: `${getRandom(0, 100)}%`,
+          left: `${getRandom(0, 100)}%`,
+          rotate: getRandom(0, 360)
+        };
+        return <Character key={i} {...props} />;
+      })}
+      {!!key && <div className="App-key">{key}</div>}
+    </div>
+  );
+}
 ```
 
 </Step>
@@ -148,5 +1685,243 @@ const sed = (eiusmod, tempor, incididunt) => {
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+<IFrame
+  src="https://nikgraf.github.io/react-hooks/"
+  style={{ backgroundColor: "white" }}
+/>
+
+<Notes>Community Hooks</Notes>
+
+---
+
+## Forms
+
+### Controlled & Uncontrolled
+
+---
+
+<CodeSandbox id="n95ljrng2" module="/src/App1.js" />
+
+<Notes>Meme Generator</Notes>
+
+---
+
+# Flow of Data
+
+---
+
+<CodeSandbox
+  id="tic-tac-toe-usestate-cnp6q"
+  module="/src/TicTacToe.js"
+/>
+
+<Notes>Tic-Tac-Toe useState</Notes>
+
+---
+
+<CodeSurfer>
+
+```jsx title="React.useReducer function"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```jsx 8:11 subtitle="Call React.useReducer passing a reducer function and initialState"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```jsx 1 subtitle="Initial state is an object with default values"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  /* ... */
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```jsx 4:11 subtitle="Reducer accepts existing state and incoming action"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "+":
+      return { count: state.count + 1 };
+    case "-":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+```jsx 4:6,22 subtitle="dispatch triggers reducer to get engaged"
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "+":
+      return { count: state.count + 1 };
+    case "-":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(
+    reducer,
+    initialState
+  );
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: "+" })}>
+        +
+      </button>
+      <button onClick={() => dispatch({ type: "-" })}>
+        -
+      </button>
+    </>
+  );
+}
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSandbox
+  id="tic-tac-toe-usereducer-memo-6dps4"
+  module="/src/TicTacToe1.js"
+/>
+
+<Notes>Tic-Tac-Toe useReduder</Notes>
+
+---
+
+# Thank you!
+
+<a
+  href="https://bit.ly/react-intro-hooks"
+  style={{
+        fontFamily: "monospace",
+        fontSize: "3rem",
+        color: "white",
+        textDecoration: "none",
+        webkitTextStrokeWidth: "2px",
+        webkitTextStrokeColor: "black"
+      }}>
+  bit.ly/react-intro-hooks
+</a>
+<a
+  href="https://twitter.com/elijahmanor"
+  style={{
+    fontFamily: "monospace",
+    fontSize: "3rem",
+    color: "whitet",
+    textDecoration: "none",
+    webkitTextStrokeWidth: "2px",
+    webkitTextStrokeColor: "black"
+  }}
+>
+  @elijahmanor
+</a>
+
+<!--
+# Resources
+
+- [Fake useState](https://codesandbox.io/s/mymjpv3l48)
+- [Custom Hook (useTheForce)]()
+- [StarWars Glyphicons](http://starwarsglyphicons.com/cheatsheet.phtml)
+- [Photo](https://unsplash.com/photos/KBE_Bvq1U30) by [Suad Kamardeen](https://unsplash.com/@skmuse_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on Unsplash
+-->
+
+<!--
+  https://codesandbox.io/s/mymjpv3l48
+  useEffect(() => {
+    // http://matthewrayfield.com/articles/animating-urls-with-javascript-and-emojis
+    const saber = "o()xxx[{";
+    window.location.hash = document.title = `${saber}${":".repeat(
+      percent / 5
+    )}${percent ? ">" : ""}`.trim();
+  });
+-->
