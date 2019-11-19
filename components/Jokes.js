@@ -8,11 +8,15 @@ export default function Jokes(props) {
 
   useEffect(() => {
     fetch(
-      "https://rawgit.com/elijahmanor/cyberpun/master/jokes.json"
+      "https://unpkg.com/devpun/jokes.json"
+      // "https://unpkg.com/devpun@1.4.0/jokes.json"
+      // "https://rawgit.com/elijahmanor/cyberpun/master/jokes.json"
     )
       .then(response => response.json())
       .then(jokes => {
-        jokes = jokes.filter(j => j.question);
+        jokes = jokes.filter(
+          j => j.question && j.rating <= 2
+        );
         setJokes(jokes);
       });
   }, []);

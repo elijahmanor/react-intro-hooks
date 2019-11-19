@@ -1,9 +1,43 @@
 import React from "react";
 import Highlight, {
-  defaultProps
+  defaultProps,
 } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/duotoneLight";
 import styled from "styled-components";
+
+/*
+pre.language-jsx {
+  width: 95vw;
+  max-height: 70vh;
+}
+
+.prism-code {
+  width: 45vw !important;
+  overflow: scroll !important;
+  max-height: 90vh !important;
+}
+.prism-code,
+.prism-code .token {
+  font-size: 0.5rem !important;
+  line-height: 0.5rem !important;
+}
+.prism-code .token-line {
+  overflow: hidden !important;
+}
+
+pre.language-jsx,
+pre.language-jsx .token {
+  font-size: 1.25rem;
+  line-height: 1.25rem;
+}
+@media screen and (min-width: 56em) {
+  pre.language-jsx,
+  pre.language-jsx .token {
+    line-height: 1.25rem;
+    font-size: 1.25rem;
+  }
+}
+*/
 
 const Wrapper = styled.div`
   font-family: sans-serif;
@@ -42,7 +76,7 @@ const SideBySide = ({ before, after, intents }) =>
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
         }}
       >
         <Highlight
@@ -56,7 +90,7 @@ const SideBySide = ({ before, after, intents }) =>
             style,
             tokens,
             getLineProps,
-            getTokenProps
+            getTokenProps,
           }) => (
             <Pre
               className={className}
@@ -69,7 +103,7 @@ const SideBySide = ({ before, after, intents }) =>
                     backgroundColor: getLineColor(
                       i,
                       intents.before
-                    )
+                    ),
                   }}
                 >
                   <LineNo>{i + 1}</LineNo>
@@ -94,7 +128,7 @@ const SideBySide = ({ before, after, intents }) =>
             style,
             tokens,
             getLineProps,
-            getTokenProps
+            getTokenProps,
           }) => (
             <Pre
               className={className}
@@ -107,7 +141,7 @@ const SideBySide = ({ before, after, intents }) =>
                     backgroundColor: getLineColor(
                       i,
                       intents.after
-                    )
+                    ),
                   }}
                 >
                   <LineNo>{i + 1}</LineNo>

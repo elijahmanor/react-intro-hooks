@@ -13,34 +13,7 @@
   font-size: calc(1vw + 1vh + 0.5vmin) !important;
 }
 
-pre.language-jsx {
-  width: 95vw;
-  max-height: 70vh;
-}
-
-.prism-code {
-  width: 45vw !important;
-  overflow: scroll !important;
-  max-height: 90vh !important;
-}
-.prism-code,
-.prism-code .token {
-  font-size: 0.5rem !important;
-  line-height: 0.5rem !important;
-}
-.prism-code .token-line {
-  overflow: hidden !important;
-}
-
-pre.language-jsx,
-pre.language-jsx .token {
-  font-size: 1.25rem;
-  line-height: 1.25rem;
-}
-@media screen and (min-width: 56em) {
-  pre.language-jsx,
-  pre.language-jsx .token {
-    line-height: 1.25rem;
-    font-size: 1.25rem;
-  }
+.react-live-preview + div {
+  width: 75%;
+  overflow: hidden;
 }

@@ -4,7 +4,6 @@ import {
   Step,
 } from "code-surfer";
 import { github, vsDark} from "@code-surfer/themes";
-
 import {
   Head,
   Notes,
@@ -23,6 +22,7 @@ import IFrame, {
   Glitch,
   CodeSandbox
 } from "./components/IFrame";
+import { LiveCode } from 'mdx-deck-live-code';
 import "./deck.css";
 
 import myTheme from "./theme";
@@ -152,11 +152,9 @@ import backgroundImage from './images/suad-kamardeen-786325-unsplash.jpg'
 
 ---
 
-## Elijah Manor
+import profile from  "./images/npx-elijahmanor.png";
 
-### [Planview](https://www.planview.com/) / [LeanKit](https://leankit.com/)
-
-### Front-End Web Developer
+<img style={{ height: '70vh' }} src={profile} />
 
 `npx elijahmanor`
 
@@ -438,7 +436,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```jsx 2 subtitle="Use curly-braces to drop into JavaScript expression"
+```jsx 1[23:27],2 subtitle="Use curly-braces to drop into JavaScript expression"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -453,7 +451,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```jsx 5:8 subtitle="You can also assign other JSX to a variable to inject"
+```jsx 5[23:27],6:7 subtitle="You can also assign other JSX to a variable to inject"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -468,7 +466,7 @@ function MyComponent3({ name }) {
 }
 ```
 
-```jsx 10:12 subtitle="Or you an destructure the value as it comes inside the component"
+```jsx 10[23:30],11 subtitle="Or you an destructure the value as it comes inside the component"
 function MyComponent1(props) {
   return <h1>Hello, {props.name}!</h1>;
 }
@@ -566,7 +564,7 @@ function MyComponent(props) {
 }
 ```
 
-```jsx 1,4:6 subtitle="You could manually add props with matching names"
+```jsx 1[22:26],4:6 subtitle="You could manually add props with matching names"
 function MyComponent(props) {
   return (
     <SubComponent
@@ -578,7 +576,7 @@ function MyComponent(props) {
 }
 ```
 
-```jsx 1:2 subtitle="Or you could spread the properties from the object"
+```jsx 1[22:26],2 subtitle="Or you could spread the properties from the object"
 function MyComponent(props) {
   return <SubComponent {...props} />;
 }
@@ -595,14 +593,14 @@ function MyComponent(props) {
 }
 ```
 
-```jsx 1:4 subtitle="Sometimes you don't want to spread everything"
+```jsx 1[22:26],2:3 subtitle="Sometimes you don't want to spread everything"
 function MyComponent(props) {
   const { checked, ...everythingElse } = props;
   return <SubComponent {...everythingElse} />;
 }
 ```
 
-```jsx 2:6 subtitle="Another technique is using lodash's omit"
+```jsx 1[22:26],2:6 subtitle="Another technique is using lodash's omit"
 function MyComponent(props) {
   const everyThingElse = _.omit(props, [
     "checked",
@@ -642,7 +640,7 @@ function MyComponent(props) {
 }
 ```
 
-```jsx 2,6 subtitle="There's an implicit children prop"
+```jsx 1[22:26],2,6 subtitle="There's an implicit children prop"
 function MyComponent(props) {
   return <div>{props.children}</div>;
 }
@@ -691,6 +689,18 @@ class Counter extends React.Component {
 }
 ```
 
+```jsx 4[23:42],5[1:26] subtitle="Props are referenced off of the implicit 'this' implicit parameter"
+class Counter extends React.Component {
+  render() {
+    return (
+      <button onClick={this.props.onClick}>
+        {this.props.count}
+      </button>
+    );
+  }
+}
+```
+
 </CodeSurfer>
 
 ---
@@ -709,6 +719,118 @@ class Counter extends React.Component {
 <CodeSurfer>
 
 ```jsx title="Class Component: State"
+class Counter extends React.Component {
+  constructor() {
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+</CodeSurfer>
+
+---
+
+<LiveCode
+  titleX="My Title"
+  size="fullscreen"
+  code={`class Counter extends React.Component {
+  constructor() {
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+`}
+  previewProps={{
+		style: { padding: '1rem', fontSize: '1.5rem', color: 'black', width: "25%" },
+	}}
+	editorProps={{
+    style: { fontSize: '1rem', background: '#001628' }
+  }}
+/>
+
+---
+
+<CodeSurfer>
+
+```jsx 2,3,5 subtitle="Initializes state in the constructor"
+class Counter extends React.Component {
+  constructor() {
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+```jsx 12 subtitle="Reads the state off of the this implicit parameter"
+class Counter extends React.Component {
+  constructor() {
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+```jsx 7 subtitle="When a change happen, use the setState method"
+class Counter extends React.Component {
+  constructor() {
+    this.state = { count: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState(prev => ({ count: ++prev.count }));
+  };
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.count}
+      </button>
+    );
+  }
+}
+```
+
+```jsx 2,3:5 subtitle="Another way to write that is with Class Fields"
 class Counter extends React.Component {
   state = { count: 0 };
   handleClick = () => {
@@ -936,26 +1058,26 @@ Instead to gradually start using hooks as you create new Components in your appl
 <CodeSurfer>
 
 ```jsx title="React.useState function"
-import React, { useState } = "react";
+import React from "react";
 
 function Counter() {
-  const returnArray = useState("default value");
+  const returnArray = React.useState("initial value");
 }
 ```
 
 ```jsx 4 subtitle="Call React.useState and provide a default value"
-import React, { useState } = "react";
+import React from "react";
 
 function Counter() {
-  const returnArray = useState("initial value");
+  const returnArray = React.useState("initial value");
 }
 ```
 
-```jsx 6,7 subtitle="Returned array has value & update function"
-import React, { useState } = "react";
+```jsx 6,7 subtitle="The returned array has a value & an update function"
+import React from "react";
 
 function Counter() {
-  const returnArray = useState("default value");
+  const returnArray = React.useState("initial value");
 
   const value = returnArray[0];
   const setValue = returnArray[1];
@@ -963,10 +1085,18 @@ function Counter() {
 ```
 
 ```jsx 4 subtitle="You can use array destructuring instead"
-import React, { useState } = "react";
+import React from "react";
 
 function Counter() {
-  const [value, setValue] = useState("default value");
+  const [value, setValue] = React.useState("initial value");
+}
+```
+
+```jsx 1[13:26],4[29:36] subtitle="Some like the named useState export instead of using React.useState"
+import React, { useState } from "react";
+
+function Counter() {
+  const [value, setValue] = useState("initial value");
 }
 ```
 

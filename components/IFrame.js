@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDeck } from "mdx-deck";
 import { useHotkeys } from "react-hotkeys-hook";
@@ -28,7 +28,7 @@ export function CodeSandbox({
 }) {
   const { slug, index } = useDeck();
   const [useBackup, setUseBackup] = useState(false);
-  const [clipboard, copyToClipboard] = useClipboard();
+  const [, copyToClipboard] = useClipboard();
   const src = window.encodeURI(
     `https://codesandbox.io/embed/${
       useBackup && backupId ? backupId : id
@@ -142,7 +142,7 @@ export default function IFrame({
 }) {
   const { slug, index } = useDeck();
   const [useBackup, setUseBackup] = useState(false);
-  const [clipboard, copyToClipboard] = useClipboard();
+  const [, copyToClipboard] = useClipboard();
   useHotkeys("ctrl+b", () => setUseBackup(!useBackup));
   useHotkeys(
     "ctrl+m",
