@@ -8,8 +8,8 @@
     "gh-pages": "git subtree push --prefix dist origin gh-pages",
     "gh-pages:force": "git push origin `git subtree split --prefix dist master`:gh-pages --force",
     "gh-pages:refresh": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
-    "deploy": "npm run build && cd dist && npx now",
-    "alias": "npx now alias https://dist-tcuzlrgcyt.now.sh react-intro-hooks"
+    "deploy": "npm run build && cd public && npx now",
+    "alias": "npx now alias https://public-kr4512c1h.now.sh react-intro-hooks"
   },
   "devDependencies": {
     "code-surfer": "3.0.0-beta.1",
