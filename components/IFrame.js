@@ -4,6 +4,7 @@ import { useDeck } from "mdx-deck";
 import { useHotkeys } from "react-hotkeys-hook";
 import useClipboard from "react-hook-clipboard";
 import { navigate } from "@reach/router";
+import strictUriEncode from "strict-uri-encode";
 
 const Frame = styled.iframe`
   width: 100vw;
@@ -14,6 +15,8 @@ const Frame = styled.iframe`
   position: relative;
   z-index: 20000;
 `;
+
+const encodeURI = x => x;
 
 export function CodeSandbox({
   id = "",
@@ -29,7 +32,7 @@ export function CodeSandbox({
   const { slug, index } = useDeck();
   const [useBackup, setUseBackup] = useState(false);
   const [, copyToClipboard] = useClipboard();
-  const src = window.encodeURI(
+  const src = encodeURI(
     `https://codesandbox.io/embed/${
       useBackup && backupId ? backupId : id
     }?view=${view}&fontsize=${fontSize}&hidenavigation=${

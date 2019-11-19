@@ -26,6 +26,7 @@
     "react-hook-clipboard": "^1.0.0",
     "react-hotkeys-hook": "^1.5.3",
     "react-live": "^2.2.1",
+    "strict-uri-encode": "^2.0.0",
     "styled-components": "^4.4.1"
   }
 }

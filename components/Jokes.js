@@ -23,7 +23,7 @@ export default function Jokes(props) {
 
   useEffect(() => {
     window.setTimeout(function poll() {
-      console.log("poll", jokes);
+      // console.log("poll", jokes);
       if (jokes.length) {
         const joke = sample(jokes);
         setShowAnswer(false);
